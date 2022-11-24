@@ -1,3 +1,4 @@
+
 /********************************************************************************************************************************************************
     Maria Hernandez 
     COSC202
@@ -33,4 +34,6 @@ class player {
     bool folded;                      // 0 if player folded 1 otherwise. 
     string player_name;     
     set <string> player_hand;         // Hand of the player.
+public:
+    void set_name(string);
 };

@@ -5,6 +5,7 @@
 #include <iterator>
 #include <algorithm>    // std::shuffle
 #include <random>       // std::default_random_engine
+#include "poker.h"
 
 using namespace std; 
 
@@ -22,11 +23,15 @@ class round1 {
     // friend class player;
 };
 
-class player {
-    private:
-    set <string> player_hand; 
-    // friend class round1; 
+player::player() {
+    chips = 500;                        // Cash value.
+    folded = false;                      // 0 if player folded 1 otherwise. 
+    player_name = "";
 };
+
+void player::set_name(string name) {
+    player_name = name;
+}
 
 round1::round1() {
 
@@ -63,32 +68,47 @@ void round1::deal(set <string> &player_hand) {
 }
 
 int main () {
-    round1 cd;
-    vector <player> p; 
-    p.resize(3);
+
+    int num_players;
+    string name;
+    round1 card_deck;
+    vector <player> players; 
+
+    cout << "How many players are joining this round?: " << endl;
+
+    cin >> num_players;
+    players.resize(num_players);
+
+    cout << "Enter player names in the order they are sitting." << endl;
+
+    for (int i = 0; i < num_players; i++) {
+        cout << "Player" << i+1 << ": ";
+        cin >> name;
+        players[i].set_name(name);        
+    }
+
 
 //     shuffle (cardDeck.begin(), cardDeck.end(), std::default_random_engine(seed));
 
-cd.print();
+// card_deck.print();
 
-cd.shuffle();
-cout << endl; 
-cd.print();
+// card_deck.shuffle();
+// cout << endl; 
+// card_deck.print();
 
 
- for (size_t i = 0; i < 2; i++) {
-    for(size_t j = 0; j < 3; j++) {  
-        cd.deal(p.at(j).player_hand);
+//  for (size_t i = 0; i < 2; i++) {
+//     for(size_t j = 0; j < 3; j++) {  
+//         card_deck.deal(players.at(j).player_hand);
+//     }
 
-    }
+// }
 
-}
+// // set<string>iterator:: itr; 
+// // set <string> s = p.at(0).player_hand;
+// // cout << s << endl; 
 
-// set<string>iterator:: itr; 
-// set <string> s = p.at(0).player_hand;
-// cout << s << endl; 
-
- cout << cd.cardDeck.size() << endl; 
+//  cout << card_deck.cardDeck.size() << endl; 
 }
 
 
