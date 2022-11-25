@@ -9,20 +9,6 @@
 
 using namespace std; 
 
-class round1 {
-    vector <string> cardDeck;
-    vector<string> CARD_SUITS;
-    vector<string> CARD_VALUES;
-
-    public:
-    round1(); // Constructor, initializes cardDeck.
-    void shuffle();
-    void print(); 
-    void deal(set <string>&); 
-
-    // friend class player;
-};
-
 player::player() {
     chips = 500;                        // Cash value.
     folded = false;                      // 0 if player folded 1 otherwise. 
@@ -33,7 +19,7 @@ void player::set_name(string name) {
     player_name = name;
 }
 
-round1::round1() {
+bettingRound::bettingRound() {
 
     CARD_SUITS = { 
         "H", "C", "D", "S" 
@@ -51,17 +37,17 @@ round1::round1() {
     }
 }
 
-void round1::shuffle() {
+void bettingRound::shuffle() {
     std::random_shuffle(&cardDeck[0], &cardDeck[cardDeck.size()]); 
 }
 
-void round1::print() {
+void bettingRound::print() {
     for (size_t i = 0; i != cardDeck.size(); i++) {
         cout << cardDeck[i] << endl; 
     }
 }
 
-void round1::deal(set <string> &player_hand) {
+void bettingRound::deal(set <string> &player_hand) {
     // cardDeck.pop_back();
     player_hand.insert(cardDeck.at(cardDeck.size()-1));
     cardDeck.pop_back();
@@ -71,10 +57,10 @@ int main () {
 
     int num_players;
     string name;
-    round1 card_deck;
+    bettingRound card_deck;
     vector <player> players; 
 
-    cout << "How many players are joining this round?: " << endl;
+    cout << "How many players are joining this round?: ";
 
     cin >> num_players;
     players.resize(num_players);
