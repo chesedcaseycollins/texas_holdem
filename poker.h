@@ -1,3 +1,4 @@
+
 /********************************************************************************************************************************************************
     Maria Hernandez 
     COSC202
@@ -14,6 +15,17 @@
 
 using namespace std; 
 
+class player {
+    int chips;                        // Cash value.
+    bool folded;                      // 0 if player folded 1 otherwise. 
+    string player_name;     
+    set <string> player_hand;         // Hand of the player.
+public:
+    player();
+    void set_name(string);
+};
+
+
 class bettingRound {
     vector<string> CARD_SUITS;      // Heart Diamond Club Spade.
     vector<string> CARD_VALUES;     // A 2 - 10 J Q K.
@@ -26,11 +38,5 @@ class bettingRound {
         string handHierarchy(vector <player>);  // Determines the hand each player has, call the compareHands() method and returns the winner.
         int compareHands(vector<vector <int>>); // Compare players' hands using a vector of integers of size ten - each element corresponds to one of the ten cases (flush straight, straight, etc.)
                                                 // ranging left to right from the hand that is worth the least to the one that is worth the most. Function returns the index of the player that won. 
-};
-
-class player {
-    int chips;                        // Cash value.
-    bool folded;                      // 0 if player folded 1 otherwise. 
-    string player_name;     
-    set <string> player_hand;         // Hand of the player.
+        void print();
 };
