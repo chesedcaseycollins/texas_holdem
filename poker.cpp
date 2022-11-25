@@ -58,8 +58,8 @@ bettingRound::bettingRound() {
 }
 
 void bettingRound::shuffle() {
-    std::srand(time(0));
-    std::random_shuffle(&cardDeck[0], &cardDeck[cardDeck.size()]); 
+    //std::srand(time(0));
+    std::random_shuffle(cardDeck.begin(), cardDeck.end()); 
 }
 
 void bettingRound::print() {

@@ -27,6 +27,8 @@ int main () {
         players[i].set_name(name);        
     }
 
+    card_deck.shuffle();
+
     for (int i = 0; i < 2; i++) {
         for (int j = 0; j < num_players; j++) {
             players[j].add_card(card_deck.deal());
