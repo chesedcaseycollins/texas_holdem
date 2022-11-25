@@ -10,7 +10,7 @@
 int main () {
 
     int num_players;
-    string name;
+    string name, card;
     bettingRound card_deck;
     vector <player> players; 
 
@@ -20,23 +20,54 @@ int main () {
     players.resize(num_players);
 
     cout << "Enter player names in the order they are sitting." << endl;
-
-    for (int i = 0; i < num_players; i++) {
-        cout << "Player" << i+1 << ": ";
-        cin >> name;
-        players[i].set_name(name);        
-    }
-
-    card_deck.shuffle();
-
-    for (int i = 0; i < 2; i++) {
-        for (int j = 0; j < num_players; j++) {
-            players[j].add_card(card_deck.deal());
+    while (num_players > 1) {
+        for (int i = 0; i < num_players; i++) {
+            cout << "Player" << i+1 << ": ";
+            cin >> name;
+            players[i].set_name(name);        
         }
-    }
 
-    for (int j = 0; j < num_players; j++) {
-        players[j].print_hand();
+        card_deck.shuffle();
+
+        for (int i = 0; i < 2; i++) {
+            for (int j = 0; j < num_players; j++) {
+                players[j].add_card(card_deck.deal());
+            }
+        }
+
+        for (int i = 0; i < num_players; i++) {
+            players[i].print_hand();
+        }
+
+        for (int i = 0; i < 3; i++) {
+            card = card_deck.deal();
+            for (int i = 0; i < num_players; i++) {
+                players[i].add_card(card);
+            }            
+        }
+
+        for (int i = 0; i < num_players; i++) {
+            players[i].print_hand();
+        }
+        
+        card = card_deck.deal();
+        for (int i = 0; i < num_players; i++) {
+            players[i].add_card(card);
+        }  
+
+        for (int i = 0; i < num_players; i++) {
+            players[i].print_hand();
+        }
+        
+        card = card_deck.deal();
+        for (int i = 0; i < num_players; i++) {
+            players[i].add_card(card);
+        }  
+
+        for (int i = 0; i < num_players; i++) {
+            players[i].print_hand();
+        }
+
     }
  
     return 0;

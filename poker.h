@@ -34,6 +34,7 @@ class bettingRound {
     vector<string> CARD_SUITS;      // Heart Diamond Club Spade.
     vector<string> CARD_VALUES;     // A 2 - 10 J Q K.
     vector <string> cardDeck;       // 52 value-suit cards.
+    vector <int> pot;
 
     public:
         bettingRound();             // Constructor will use a nested for-loop to loop through CARD_SUITS and CARD_VALUES to obtain 52 value-suit cards.
@@ -43,4 +44,7 @@ class bettingRound {
         int compareHands(vector<vector <int>>); // Compare players' hands using a vector of integers of size ten - each element corresponds to one of the ten cases (flush straight, straight, etc.)
                                                 // ranging left to right from the hand that is worth the least to the one that is worth the most. Function returns the index of the player that won. 
         void print();
+        void raise(int);
+        void fold();
+        void call();
 };
