@@ -23,6 +23,10 @@ class player {
 public:
     player();
     void set_name(string);
+    void chip_change(int);
+    void add_card(string);
+    void print_hand();
+    int num_chips();
 };
 
 
@@ -30,13 +34,17 @@ class bettingRound {
     vector<string> CARD_SUITS;      // Heart Diamond Club Spade.
     vector<string> CARD_VALUES;     // A 2 - 10 J Q K.
     vector <string> cardDeck;       // 52 value-suit cards.
+    vector <int> pot;
 
     public:
         bettingRound();             // Constructor will use a nested for-loop to loop through CARD_SUITS and CARD_VALUES to obtain 52 value-suit cards.
         void shuffle();             // Suffle the cards in a random order using the random_shuffle() method of the <algorithm> library of the STL.
-        void deal(set <string> &);              // Deal one card to a player and decrease the card deck by one each time it hands a card. 
+        string deal();              // Deal one card to a player and decrease the card deck by one each time it hands a card. 
         string handHierarchy(vector <player>);  // Determines the hand each player has, call the compareHands() method and returns the winner.
         int compareHands(vector<vector <int>>); // Compare players' hands using a vector of integers of size ten - each element corresponds to one of the ten cases (flush straight, straight, etc.)
                                                 // ranging left to right from the hand that is worth the least to the one that is worth the most. Function returns the index of the player that won. 
         void print();
+        void raise(int);
+        void fold();
+        void call();
 };

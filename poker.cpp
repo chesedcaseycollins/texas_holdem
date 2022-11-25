@@ -9,6 +9,7 @@
 #include <algorithm>    // std::shuffle
 #include <random>       // std::default_random_engine
 #include "poker.h"
+#include <ctime>
 
 using namespace std; 
 
@@ -20,6 +21,22 @@ player::player() {
 
 void player::set_name(string name) {
     player_name = name;
+}
+
+void player::chip_change(int change) {
+    chips += change;
+}
+
+void player::add_card(string card) {
+    player_hand.insert(card);
+}
+
+void player::print_hand() {
+    set<string>::iterator it;
+    for (it = player_hand.begin(); it!= player_hand.end(); it++) {
+        cout << *it << " ";
+    }
+    cout << endl;
 }
 
 bettingRound::bettingRound() {
@@ -41,7 +58,8 @@ bettingRound::bettingRound() {
 }
 
 void bettingRound::shuffle() {
-    std::random_shuffle(&cardDeck[0], &cardDeck[cardDeck.size()]); 
+    std::srand(time(0));
+    std::random_shuffle(cardDeck.begin(), cardDeck.end()); 
 }
 
 void bettingRound::print() {
@@ -50,55 +68,56 @@ void bettingRound::print() {
     }
 }
 
-void bettingRound::deal(set <string> &player_hand) {
+string bettingRound::deal() {
     // cardDeck.pop_back();
-    player_hand.insert(cardDeck.at(cardDeck.size()-1));
+    string card = cardDeck.at(cardDeck.size()-1);
     cardDeck.pop_back();
+    return card;
 }
 
-int main () {
+// int main () {
 
-    int num_players;
-    string name;
-    bettingRound card_deck;
-    vector <player> players; 
+//     int num_players;
+//     string name;
+//     bettingRound card_deck;
+//     vector <player> players; 
 
-    cout << "How many players are joining this round?: ";
+//     cout << "How many players are joining this round?: ";
 
-    cin >> num_players;
-    players.resize(num_players);
+//     cin >> num_players;
+//     players.resize(num_players);
 
-    cout << "Enter player names in the order they are sitting." << endl;
+//     cout << "Enter player names in the order they are sitting." << endl;
 
-    for (int i = 0; i < num_players; i++) {
-        cout << "Player" << i+1 << ": ";
-        cin >> name;
-        players[i].set_name(name);        
-    }
-
-
-//     shuffle (cardDeck.begin(), cardDeck.end(), std::default_random_engine(seed));
-
-// card_deck.print();
-
-// card_deck.shuffle();
-// cout << endl; 
-// card_deck.print();
-
-
-//  for (size_t i = 0; i < 2; i++) {
-//     for(size_t j = 0; j < 3; j++) {  
-//         card_deck.deal(players.at(j).player_hand);
+//     for (int i = 0; i < num_players; i++) {
+//         cout << "Player" << i+1 << ": ";
+//         cin >> name;
+//         players[i].set_name(name);        
 //     }
 
+
+// //     shuffle (cardDeck.begin(), cardDeck.end(), std::default_random_engine(seed));
+
+// // card_deck.print();
+
+// // card_deck.shuffle();
+// // cout << endl; 
+// // card_deck.print();
+
+
+// //  for (size_t i = 0; i < 2; i++) {
+// //     for(size_t j = 0; j < 3; j++) {  
+// //         card_deck.deal(players.at(j).player_hand);
+// //     }
+
+// // }
+
+// // // set<string>iterator:: itr; 
+// // // set <string> s = p.at(0).player_hand;
+// // // cout << s << endl; 
+
+// //  cout << card_deck.cardDeck.size() << endl; 
 // }
-
-// // set<string>iterator:: itr; 
-// // set <string> s = p.at(0).player_hand;
-// // cout << s << endl; 
-
-//  cout << card_deck.cardDeck.size() << endl; 
-}
 
 
 
