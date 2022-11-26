@@ -17,6 +17,7 @@ player::player() {
     chips = 500;                        // Cash value.
     folded = false;                      // 0 if player folded 1 otherwise. 
     player_name = "";
+    player_bet = 0;
 };
 
 void player::set_name(string name) {
@@ -37,6 +38,11 @@ void player::print_hand() {
         cout << *it << " ";
     }
     cout << endl;
+}
+
+void player::bet(int bet_amt) {
+    chips -= bet_amt;
+    player_bet += bet_amt;
 }
 
 bettingRound::bettingRound() {
@@ -75,51 +81,7 @@ string bettingRound::deal() {
     return card;
 }
 
-// int main () {
-
-//     int num_players;
-//     string name;
-//     bettingRound card_deck;
-//     vector <player> players; 
-
-//     cout << "How many players are joining this round?: ";
-
-//     cin >> num_players;
-//     players.resize(num_players);
-
-//     cout << "Enter player names in the order they are sitting." << endl;
-
-//     for (int i = 0; i < num_players; i++) {
-//         cout << "Player" << i+1 << ": ";
-//         cin >> name;
-//         players[i].set_name(name);        
-//     }
-
-
-// //     shuffle (cardDeck.begin(), cardDeck.end(), std::default_random_engine(seed));
-
-// // card_deck.print();
-
-// // card_deck.shuffle();
-// // cout << endl; 
-// // card_deck.print();
-
-
-// //  for (size_t i = 0; i < 2; i++) {
-// //     for(size_t j = 0; j < 3; j++) {  
-// //         card_deck.deal(players.at(j).player_hand);
-// //     }
-
-// // }
-
-// // // set<string>iterator:: itr; 
-// // // set <string> s = p.at(0).player_hand;
-// // // cout << s << endl; 
-
-// //  cout << card_deck.cardDeck.size() << endl; 
-// }
-
-
-
-
-
+void bettingRound::blinds(player big, player small) {
+    big.bet(10);
+    small.bet(5);
+}

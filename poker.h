@@ -20,6 +20,8 @@ class player {
     bool folded;                      // 0 if player folded 1 otherwise. 
     string player_name;     
     set <string> player_hand;         // Hand of the player.
+    int in_pot;
+    int player_bet;
 public:
     player();
     void set_name(string);
@@ -27,6 +29,7 @@ public:
     void add_card(string);
     void print_hand();
     int num_chips();
+    void bet(int);
 };
 
 
@@ -47,4 +50,5 @@ class bettingRound {
         void raise(int);
         void fold();
         void call();
+        void blinds(player, player);
 };

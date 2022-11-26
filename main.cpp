@@ -9,7 +9,7 @@
 
 int main () {
 
-    int num_players;
+    int num_players, round_count = 0;
     string name, card;
     bettingRound card_deck;
     vector <player> players; 
@@ -28,6 +28,7 @@ int main () {
         }
 
         card_deck.shuffle();
+        card_deck.blinds(players[round_count % num_players], players[(round_count+1) % num_players]);
 
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < num_players; j++) {
@@ -67,6 +68,8 @@ int main () {
         for (int i = 0; i < num_players; i++) {
             players[i].print_hand();
         }
+
+    round_count++;
 
     }
  
