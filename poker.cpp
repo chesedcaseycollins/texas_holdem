@@ -45,6 +45,10 @@ void player::bet(int bet_amt) {
     player_bet += bet_amt;
 }
 
+void player::print_name() {
+    cout << player_name;
+}
+
 bettingRound::bettingRound() {
 
     CARD_SUITS = { 
@@ -81,7 +85,10 @@ string bettingRound::deal() {
     return card;
 }
 
-void bettingRound::blinds(player big, player small) {
-    big.bet(10);
-    small.bet(5);
+void bettingRound::blinds(int size, int &small_i, int &big_i, int &dealer_i) {
+    big_i = small_i;
+    small_i = (small_i + 1) % size;
+
+    if (big_i == 0) dealer_i = size - 1;
+    else dealer_i = big_i - 1;
 }

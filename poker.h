@@ -30,6 +30,7 @@ public:
     void print_hand();
     int num_chips();
     void bet(int);
+    void print_name();
 };
 
 
@@ -50,5 +51,5 @@ class bettingRound {
         void raise(int);
         void fold();
         void call();
-        void blinds(player, player);
+        void blinds(int, int &, int &, int &);
 };
